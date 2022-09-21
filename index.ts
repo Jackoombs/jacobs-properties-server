@@ -1,9 +1,9 @@
 import express from "express";
 import { fetchAllProperties, fetchProperty } from "./reapitFetch.js";
-import _ from "lodash"
+var _ = require('lodash');
 
 const app = express();
-const port = process.ENV.PORT || 8080;
+const port = process.env.PORT || 8080;
 let salesProperties = []
 let lettingsProperties = []
 
@@ -27,7 +27,7 @@ const getProperties = async (emptyArray, SearchType) => {
         "Bathrooms",
 
       ])
-    emptyArray.push(propertyData)
+    emptyArray.push(propertySubset)
   }
   return emptyArray
 }
@@ -41,7 +41,7 @@ setInterval(async () => {
   const newLettingsProperties = await getProperties([], "lettings")
   salesProperties = newSalesProperties
   lettingsProperties = newLettingsProperties
-},[800000])
+}, 800000)
 
 app.get("/", (req, res) => {
   res.json({msg: "API working"})
@@ -64,6 +64,6 @@ app.get("/properties", (req, res) => {
 app.get("/property/:id", (req, res) => {
   const ID = req.params.id
   const allProperties = salesProperties.concat(lettingsProperties)
-  const property = allProperties.find(property => property.ID === ID)
+  const property = allProperties.find((property: any) => property.ID === ID)
   res.json(property)
 })
