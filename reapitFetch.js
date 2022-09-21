@@ -9,8 +9,9 @@ const options = {
 }
 const parser = new XMLParser(options);
 
-export const fetchAllProperties = async () => {
-  const res = await axios.get(BASE_URL + "general" + API_KEY)
+export const fetchAllProperties = async (searchType) => {
+  const URL = BASE_URL + "general" + API_KEY + "&" + `SearchType=${searchType}`
+  const res = await axios.get(URL)
   const xmlData = await res.data
   const jsonData = parser.parse(xmlData)
   const propertyIDs = jsonData.Response.Property
@@ -23,4 +24,4 @@ export const fetchProperty = async (propertyID) => {
   const jsonData = parser.parse(xmlData)
   return jsonData.Response.Property
 }
- 
+
