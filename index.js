@@ -21,20 +21,21 @@ const getProperties = async (emptyArray, SearchType) => {
         "Image",
         "Address1",
         "Address2",
-        "Status",
+        "InternalLettingStatus",
+        "InternalSaleStatus",
         "PriceString", 
         "TotalBedrooms",
         "Bathrooms",
 
       ])
-    emptyArray.push(propertySubset)
+    emptyArray.push(propertyData)
   }
   return emptyArray
 }
 
 await getProperties(salesProperties, "sales")
 await getProperties(lettingsProperties, "lettings")
-console.log(lettingsProperties)
+console.log(salesProperties)
 
 setInterval(async () => {
   const newSalesProperties = await getProperties([], "sales")
