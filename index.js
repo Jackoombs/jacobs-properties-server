@@ -1,6 +1,6 @@
 import express from "express";
 import { fetchAllProperties, fetchProperty } from "./reapitFetch.js";
-var _ = require('lodash');
+import _ from 'lodash'
 
 const app = express();
 const port = process.env.PORT || 8080;
