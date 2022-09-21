@@ -64,6 +64,6 @@ app.get("/properties", (req, res) => {
 app.get("/property/:id", (req, res) => {
   const ID = req.params.id
   const allProperties = salesProperties.concat(lettingsProperties)
-  const property = allProperties.find((property: any) => property.ID === ID)
+  const property = allProperties.find((property) => property.ID === ID)
   res.json(property)
 })
