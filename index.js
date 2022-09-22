@@ -1,9 +1,13 @@
 import express from "express";
-import { fetchAllProperties, fetchProperty } from "./reapitFetch.js";
+import path from "path";
+import { fileURLToPath } from 'url';
+import { fetchAllProperties, fetchProperty, createThumbnail } from "./utils.js";
 import _ from 'lodash'
 
 const app = express();
 const port = process.env.PORT || 8080;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 let salesProperties = []
 let lettingsProperties = []
 
@@ -28,14 +32,18 @@ const getProperties = async (emptyArray, SearchType) => {
         "Bathrooms",
 
       ])
-    emptyArray.push(propertyData)
+    emptyArray.push(propertySubset)
+    await createThumbnail(propertyData.ID, propertyData.Image[0].Filepath)
   }
   return emptyArray
 }
 
-await getProperties(salesProperties, "sales")
+
+// await getProperties(salesProperties, "sales")
 await getProperties(lettingsProperties, "lettings")
-console.log(salesProperties)
+console.log(lettingsProperties)
+await getProperties(salesProperties, "sales")
+
 
 setInterval(async () => {
   const newSalesProperties = await getProperties([], "sales")
