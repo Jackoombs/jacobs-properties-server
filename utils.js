@@ -42,7 +42,6 @@ const downloadImage = async (URL, filepath) => {
 }
 
 const resizeImage = async (filepath, image, newImage) => {
-  console.log(`${filepath}/${image}`)
   await sharp(`${filepath}/${image}`)
     .resize(498, 332)
     .toFile(`${filepath}/${newImage}`)

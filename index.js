@@ -6,6 +6,8 @@ import _ from 'lodash'
 
 const app = express();
 const port = process.env.PORT || 8080;
+app.use(express.static('public')); 
+app.use('/images', express.static('images'));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let salesProperties = []
