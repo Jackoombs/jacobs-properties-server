@@ -53,7 +53,7 @@ const deleteImage = async (filepath) => {
 }
 
 export const createThumbnail = async (propertyID, imageURL) => {
-  await downloadImage(imageURL, __dirname + `/images/${propertyID}.jpg`)
-  await resizeImage(`${__dirname}/images/`, `${propertyID}.jpg`, `${propertyID}-resized.jpg`)
-  await deleteImage(`${__dirname}/images/${propertyID}.jpg`)
+  await downloadImage(imageURL,`/images/${propertyID}.jpg`)
+  await resizeImage(`/images/`, `${propertyID}.jpg`, `${propertyID}-resized.jpg`)
+  await deleteImage(`/images/${propertyID}.jpg`)
 }
