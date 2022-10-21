@@ -16,7 +16,10 @@ router.get("/properties/:searchType", (req, res) => {
 })
 
 router.get("/properties", (req, res) => {
-  const allProperties = getSales().concat(getLettings)
+  let allProperties = getSales()
+  if (getLettings().length) {
+    allProperties = getSales().concat(getLettings())
+  }
   res.json(allProperties)
 })
 
