@@ -1,4 +1,5 @@
 import { getSales, getLettings } from "./index.js";
+import { sendMail } from "./mail.js"
 import express from "express";
 const router = express.Router()
 
@@ -30,4 +31,8 @@ router.get("/property/:id", (req, res) => {
   res.json(property)
 })
 
+router.post("/send", (req, res) => {
+  const { firstName, secondName, email } = req.body
+  sendMail(firstName, secondName, email)
+})
 export default router
