@@ -1,16 +1,21 @@
 import express from "express";
-import path from "path";
-import { fileURLToPath } from 'url';
 import { getProperties } from "./utils.js";
 import _ from 'lodash'
 import router from "./routes.js";
+import dotenv from 'dotenv';
+import cors from "cors"
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
+
 app.use(express.static('public')); 
 app.use('/images', express.static('images'));
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+app.use(cors({
+  origin: "https://jacobs-properties-client.vercel.app/"
+}))
+app.use(express.json());
 
 let salesProperties = []
 let lettingsProperties = []
