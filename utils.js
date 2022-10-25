@@ -85,3 +85,10 @@ export const getProperties = async (emptyArray, SearchType) => {
   }
   return emptyArray
 }
+
+export const generateCode = (length) => {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+  const array = [...Array(length).keys()].map(e => Math.floor(Math.random() * letters.length ))
+  const code = array.map(index => letters.slice(index, index+1))
+  return code.join('')
+}
