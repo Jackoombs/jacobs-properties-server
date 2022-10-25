@@ -8,10 +8,13 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "fast-xml-parser": "^4.0.10",
     "image-downloader": "^4.3.0",
     "lodash": "^4.17.21",
+    "nodemailer": "^6.8.0",
     "sharp": "^0.31.0"
   },
   "devDependencies": {
