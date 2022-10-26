@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080;
 app.use(express.static('public')); 
 app.use('/images', express.static('images'));
 app.use(cors({
-  origin: "https://jacobs-properties-client.vercel.app"
+  origin: ["https://jacobs-properties-client.vercel.app", "https://staging.jacobs.properties"]
 }))
 app.use(express.json());
 
