@@ -86,12 +86,21 @@ export const getProperties = async (emptyArray, SearchType) => {
   return emptyArray;
 };
 
-export const generateCode = (length) => {
+const generateCode = (length) => {
   const letters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-  const array = [...Array(length).keys()].map((e) =>
+
+  const array = [...Array(length).keys()];
+  const randomIndexArray = array.map((e) =>
     Math.floor(Math.random() * letters.length)
   );
-  const code = array.map((index) => letters.slice(index, index + 1));
-  return code.join("");
+
+  const randomCode = randomIndexArray
+    .map((index) => letters.slice(index, index + 1))
+    .join("");
+  return randomCode;
+};
+
+export const formattedCode = () => {
+  return `${generateCode(5)}-${generateCode(5)}-${generateCode(5)}`;
 };
