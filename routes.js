@@ -1,6 +1,9 @@
 import { getSales, getLettings } from "./index.js";
+import { friendTemplate } from "./email_templates/friend.js";
+import { jacobsTemplate } from "./email_templates/jacobs.js";
+import { vendorTemplate } from "./email_templates/vendor.js";
 import { sendUserMail } from "./mail.js";
-import { generateCode } from "./utils.js";
+import { formattedCode } from "./utils.js";
 import express from "express";
 const router = express.Router();
 
@@ -33,16 +36,20 @@ router.get("/property/:id", (req, res) => {
 });
 
 router.post("/send", async (req, res) => {
-  const code = generateCode(8)
-  const user = req.body.user
-  const friend = req.body.friend
+  const code = formattedCode();
+  const user = req.body.user;
+  const friend = req.body.friend;
   try {
-    await sendUserMail(user.name, user.email, code);
-    await sendUserMail(friend.name, friend.email, code)
-    res.status(200)
+    await sendUserMail(vendorTemplate(code), user.email);
+    await sendUserMail(friendTemplate(code), friend.email);
+    await sendUserMail(
+      jacobsTemplate(user.name, friend.name, friend.email, code),
+      "jackg.coombs97@gmail.com"
+    );
+    res.status(200);
   } catch (error) {
-    console.log(error)
-    res.status(500).send({ error: error })
+    console.log(error);
+    res.status(500).send({ error: error });
   }
 });
 export default router;
