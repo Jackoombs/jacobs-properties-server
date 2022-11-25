@@ -44,7 +44,7 @@ router.post("/send", async (req, res) => {
     await sendUserMail(friendTemplate(code), friend.email);
     await sendUserMail(
       jacobsTemplate(user.name, friend.name, friend.email, code),
-      "jackg.coombs97@gmail.com"
+      "sales@jacobs.properties"
     );
     res.status(200);
   } catch (error) {
