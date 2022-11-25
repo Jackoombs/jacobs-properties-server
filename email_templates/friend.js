@@ -1271,7 +1271,7 @@ export const friendTemplate = (code) => {
                                                                               style="
                                                                                 font-size: 28px;
                                                                               "
-                                                                              >sdfsdf-sdfsdf-sdfsf</span
+                                                                              >${code}</span
                                                                             >
                                                                           </p></a
                                                                         >
