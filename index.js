@@ -18,7 +18,8 @@ app.use(
       "https://jacobs-properties-client.vercel.app",
       "https://staging.jacobs.properties",
       "https://jacobs.properties",
-      "http://localhost:3000"
+      "https://jacobs-properties.vercel.app",
+      "http://localhost:3000",
     ],
   })
 );

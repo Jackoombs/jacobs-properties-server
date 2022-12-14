@@ -79,6 +79,7 @@ export const getProperties = async (emptyArray, SearchType) => {
       "PriceString",
       "TotalBedrooms",
       "Bathrooms",
+      "TimeAmended",
     ]);
     emptyArray.push(propertySubset);
     await createThumbnail(propertyData.ID, propertyData.Image[0].Filepath);
