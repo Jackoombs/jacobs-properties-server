@@ -47,7 +47,7 @@ const downloadImage = async (URL, filepath) => {
 
 const resizeImage = async (filepath, image, newImage) => {
   await sharp(`${filepath}/${image}`)
-    .resize(750, 500)
+    .resize(510, 340)
     .webp()
     .toFile(`${filepath}/${newImage}`);
 };
