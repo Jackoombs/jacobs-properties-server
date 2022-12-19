@@ -48,6 +48,7 @@ const downloadImage = async (URL, filepath) => {
 const resizeImage = async (filepath, image, newImage) => {
   await sharp(`${filepath}/${image}`)
     .resize(750, 500)
+    .webp()
     .toFile(`${filepath}/${newImage}`);
 };
 
@@ -60,7 +61,7 @@ export const createThumbnail = async (propertyID, imageURL) => {
   await resizeImage(
     `${__dirname}/images/`,
     `${propertyID}.jpg`,
-    `${propertyID}-resized.jpg`
+    `${propertyID}-thumbnail.webp`
   );
   await deleteImage(`${__dirname}/images/${propertyID}.jpg`);
 };
