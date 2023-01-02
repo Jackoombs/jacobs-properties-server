@@ -84,6 +84,7 @@ export const getProperties = async (emptyArray, SearchType) => {
       "Bathrooms",
       "ReceptionRooms",
       "Floorplan",
+      "EPC",
       "TimeAmended",
     ]);
     emptyArray.push(propertySubset);
