@@ -70,9 +70,11 @@ export const getProperties = async (emptyArray, SearchType) => {
   const propertyIDs = await fetchAllProperties(SearchType);
   for (const ID of propertyIDs) {
     const propertyData = await fetchProperty(ID);
+    console.log(propertyData);
     const propertySubset = _.pick(propertyData, [
       "ID",
       "Image",
+      "Description",
       "Address1",
       "Address2",
       "InternalLettingStatus",
@@ -80,6 +82,8 @@ export const getProperties = async (emptyArray, SearchType) => {
       "PriceString",
       "TotalBedrooms",
       "Bathrooms",
+      "ReceptionRooms",
+      "Floorplan",
       "TimeAmended",
     ]);
     emptyArray.push(propertySubset);
