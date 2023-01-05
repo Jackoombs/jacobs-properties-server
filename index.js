@@ -1,5 +1,5 @@
 import express from "express";
-import { getProperties } from "./utils.js";
+import { getProperties, deleteUnusedFolders } from "./utils.js";
 import _ from "lodash";
 import router from "./routes.js";
 import dotenv from "dotenv";
@@ -25,8 +25,8 @@ app.use(
 );
 app.use(express.json());
 
-let salesProperties = [];
-let lettingsProperties = [];
+let salesProperties = await getProperties("lettings");
+let lettingsProperties = await getProperties("sales");
 export const getSales = () => salesProperties;
 export const getLettings = () => lettingsProperties;
 
@@ -35,12 +35,20 @@ app.listen(port, () => {
 });
 app.use("/", router);
 
-await getProperties(lettingsProperties, "lettings");
-await getProperties(salesProperties, "sales");
+const propertyIds = [...salesProperties, ...lettingsProperties].map(
+  (property) => property.ID
+);
+deleteUnusedFolders(propertyIds);
 
 setInterval(async () => {
-  const newSalesProperties = await getProperties([], "sales");
-  const newLettingsProperties = await getProperties([], "lettings");
-  salesProperties = newSalesProperties;
-  lettingsProperties = newLettingsProperties;
+  lettingsProperties = await getProperties("lettings");
+  salesProperties = await getProperties("sales");
+
+  const propertyIds = [
+    salesProperties
+      .map((property) => property.ID)
+      .concat(lettingsProperties.map((property) => property.ID)),
+  ];
+  deleteUnusedFolders(propertyIds);
+  console.log(propertyIds);
 }, 800000);
